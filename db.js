@@ -122959,9 +122959,9 @@ const clients = [
     }
   ];
 
-
-  const printKeys = (clients) => {
-    var newClients = [];
+// function used to remove sensitive information from DB 
+  const updateKeys = (clients) => {
+   let newClients = [];
    let key = "CCNumber";
    let key2 = "CCType";
    let key3 = "CVV2";
@@ -122973,19 +122973,13 @@ const clients = [
 
     clients.filter((item)=>{
         if(item.CCNumber && item.CCType && item.CVV2 && item.CCExpires && item.NationalID && item.UPS && item.WesternUnionMTCN && item.MoneyGramMTCN){
-            delete item[key];
-            delete item[key2];
-            delete item[key3];
-            delete item[key4];
-            delete item[key5];
-            delete item[key6];
-            delete item[key7];
-            delete item[key8];
+            delete item[key, key2, key3, key4, key5, key6, key7, key8];
+           
 
         }
-        var item2 = JSON.stringify(item); 
+        let item2 = JSON.stringify(item); 
         newClients.push(item);
-        var newClients2 = JSON.stringify(newClients)
+        let newClients2 = JSON.stringify(newClients)
 
         // console.log(newClients)
         fs.writeFileSync("clients.txt", newClients2, function(err) {
@@ -122994,7 +122988,7 @@ const clients = [
               return console.log(err);
             }
           
-            // Otherwise, it will print: "movies.txt was updated!"
+            // Otherwise, it will print: "clients.txt was updated!"
             console.log("clients.txt was updated!");
           
           });
@@ -123004,4 +122998,4 @@ const clients = [
     
   
 
-  printKeys(clients);
+  updateKeys(clients);

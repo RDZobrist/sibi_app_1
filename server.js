@@ -7,6 +7,7 @@ const logger = require("morgan");
 // Require History Schema
 const db = require("./server/models");
 
+
 // Create Instance of Express
 var app = express();
 // Sets an initial port. We'll use this later in our listener

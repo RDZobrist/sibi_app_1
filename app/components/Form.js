@@ -17,7 +17,10 @@ class Form extends React.Component {
       username:"",
       dob:"",
       telephoneNumber: "",
-      mothersMaiden: ""
+      mothersMaiden: "",
+      companyOfEmployment: "",
+      ocupation: "",
+      emailAddress:""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -32,7 +35,6 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("CLICK");
 
     this.setState({ 
       firstName: "",
@@ -185,6 +187,7 @@ class Form extends React.Component {
                 required
               />
               <br />
+             
               <h4 className="">
                 <strong>Email Address</strong>
               </h4>
@@ -293,6 +296,38 @@ class Form extends React.Component {
                 value={this.state.mothersMaiden}
                 onChange={this.handleChange}
                 placeholder="Mom's last name before marriage"
+                required
+                
+              />
+              <br />
+              <h4 className="">
+                <strong>Occupation</strong>
+              </h4>
+
+             
+              <input
+                type="text"
+                className="form-control text-center"
+                id="ocupation"
+                value={this.state.ocupation}
+                onChange={this.handleChange}
+                placeholder="Your profession"
+                required
+                
+              />
+              <br />
+              <h4 className="">
+                <strong>Place of employment</strong>
+              </h4>
+
+             
+              <input
+                type="text"
+                className="form-control text-center"
+                id="companyOfEmployment"
+                value={this.state.companyOfEmployment}
+                onChange={this.handleChange}
+                placeholder="Where do you work?"
                 required
                 
               />

@@ -1,3 +1,4 @@
 node_modules/*
 client.txt
 clients.json
+clients.js

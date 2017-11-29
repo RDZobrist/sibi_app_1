@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/afflatus480/sibi_app_1#readme",
   "dependencies": {
+    "axios": "^0.17.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-session": "^1.15.6",

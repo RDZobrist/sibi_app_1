@@ -122960,42 +122960,62 @@ const clients = [
   ];
 
 // function used to remove sensitive information from DB 
-  const updateKeys = (clients) => {
-   let newClients = [];
-   let key = "CCNumber";
-   let key2 = "CCType";
-   let key3 = "CVV2";
-   let key4 = "CCExpires";
-   let key5 = "NationalID";
-   let key6 = "UPS";
-   let key7 = "WesternUnionMTCN";
-   let key8 = "MoneyGramMTCN";
+const updateKeys = (clients) => {
+  let newClients = [];
+  let key = "NameSet";
+  let key1 = "CCNumber";
+  let key2 = "CCType";
+  let key3 = "CVV2";
+  let key4 = "CCExpires";
+  let key5 = "NationalID";
+  let key6 = "UPS";
+  let key7 = "WesternUnionMTCN";
+  let key8 = "MoneyGramMTCN";
+// Loop over array using helper function 
+// if a sensitive key is in item obj, delete 
+// the appropriate keys 
+   clients.filter((item)=>{
+     if(item.MoneyGramMTCN){
+       delete item[key8]
+     }if(item.WesternUnionMTCN){
+      delete item[key7]
+    }if(item.CCType){
+      delete item[key2]
+    }if(item.CCNumber){
+      delete item[key1]
+    }if(item.CVV2){
+      delete item[key3]
+    }if(item.CCExpires){
+      delete item[key4]
+    }if(item.NationalID){
+      delete item[key5]
+    }if(item.UPS){
+      delete item[key6]
+    }if(item.NameSet){
+      delete item[key]
+    }
+      //  stringify the updated items 
+       let item2 = JSON.stringify(item); 
+      //  push updated item to new array
+       newClients.push(item);
+      //  stringify the updated array
+       let newClients2 = JSON.stringify(newClients)
 
-    clients.filter((item)=>{
-        if(item.CCNumber && item.CCType && item.CVV2 && item.CCExpires && item.NationalID && item.UPS && item.WesternUnionMTCN && item.MoneyGramMTCN){
-            delete item[key, key2, key3, key4, key5, key6, key7, key8];
-           
-
-        }
-        let item2 = JSON.stringify(item); 
-        newClients.push(item);
-        let newClients2 = JSON.stringify(newClients)
-
-        // console.log(newClients)
-        fs.writeFileSync("clients.txt", newClients2, function(err) {
-            // If the code experiences any errors it will log the error to the console.
-            if (err) {
-              return console.log(err);
-            }
-          
-            // Otherwise, it will print: "clients.txt was updated!"
-            console.log("clients.txt was updated!");
-          
-          });
-       
-    }) 
+       // console.log(newClients)
+       fs.writeFileSync("client.txt", newClients2, function(err) {
+           // If the code experiences any errors it will log the error to the console.
+           if (err) {
+             return console.log(err);
+           }
+         
+           // Otherwise, it will print: "clients.txt was updated!"
+           console.log("clients.txt was updated!");
+         
+         });
+      
+   }) 
 }
-    
-  
+   
+ 
 
-  updateKeys(clients);
+ updateKeys(clients);

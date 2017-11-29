@@ -122994,9 +122994,7 @@ const updateKeys = (clients) => {
     }if(item.NameSet){
       delete item[key]
     }
-      //  stringify the updated items 
-       let item2 = JSON.stringify(item); 
-      //  push updated item to new array
+
        newClients.push(item);
       //  stringify the updated array
        let newClients2 = JSON.stringify(newClients)

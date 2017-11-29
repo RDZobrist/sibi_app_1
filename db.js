@@ -122975,6 +122975,13 @@ const updateKeys = (clients) => {
 // if a sensitive key is in item obj, delete 
 // the appropriate keys 
    clients.filter((item)=>{
+ if(item.TelephoneCountryCode == 1){
+   let count = 0;
+   count++;
+   console.log(count);
+ }
+
+
      if(item.MoneyGramMTCN){
        delete item[key8]
      }if(item.WesternUnionMTCN){

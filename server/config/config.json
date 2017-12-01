@@ -2,7 +2,7 @@
   "development": {
     "username": "robertzobrist",
     "password": "javascript",
-    "database": "sibitest",
+    "database": "robertzobrist",
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres"

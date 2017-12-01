@@ -1,4 +1,5 @@
 import React from "react";
+import helpers from '../utils/helpers';
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +36,12 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    let p = this.state.firstName;
+    console.log(p)
+    // console.dir(this.state)
+    // helpers.postSaved().then(function() {
+    //   console.log(item.web_url);
+    // });
     this.setState({ 
       firstName: "",
       surname: "",
@@ -44,30 +50,60 @@ class Form extends React.Component {
       streetAddress: "",
       city: "",
       zipCode:"",
-      country: "",
       password: "",
       password2: "",
       username:"",
       dob:"",
       emailAddress:"",
       telephoneNumber: "",
-      mothersMaiden: ""
+      title: "",
+      title1:"",
      });
-     console.log(this.state);
+    //  console.log(this.state);
   }
 
   render() {
 
     return (
-
-      <div className="panel panel-default">
-        <div className="panel-heading">
-          <h2 className="panel-title text-center">Sibi</h2>
+<div className="container">
+      <div className="panel panel-default myPanel">
+        <div className="panel-heading myPanelHeading">
+          <h2 className="panel-title text-center ">Registration Form</h2>
         </div>
         <div className="panel-body text-center">
 
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
+            <h4 className="">
+                <strong>Title</strong>
+              </h4>
+
+             
+              <input
+                type="text"
+                className="form-control text-center"
+                id="title"
+                value={this.state.title}
+                onChange={this.handleChange}
+                placeholder="Mr. Mrs. Miss or Dr."
+                required
+              />
+                            <h4 className="">
+                <strong>Title1</strong>
+              </h4>
+
+             
+              <input
+                type="text"
+                className="form-control text-center"
+                id="title1"
+                value={this.state.title1}
+                onChange={this.handleChange}
+                placeholder="Your last name"
+                required
+              />
+            <div className="row">
+            <div className="col-xs-4">
               <h4 className="">
                 <strong>First name</strong>
               </h4>
@@ -79,8 +115,26 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 placeholder="Your first name"
                 required
+              />  </div>         
+              <div className="col-xs-4">
+              
+               <h4 className="">
+                <strong>Middle initial</strong>
+              </h4>
+
+             
+              <input
+                type="text"
+                className="form-control text-center"
+                id="middleInitial"
+                value={this.state.middleInitial}
+                onChange={this.handleChange}
+                placeholder="Middle initial only"
+                required
               />
-              <br />
+              </div>
+                         <div className="col-xs-4">
+
               <h4 className="">
                 <strong>Surname</strong>
               </h4>
@@ -95,27 +149,13 @@ class Form extends React.Component {
                 placeholder="Your last name"
                 required
               />
-              <br />
-              <h4 className="">
-                <strong>Middle initial</strong>
-              </h4>
 
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="middleInitial"
-                value={this.state.middleInitial}
-                onChange={this.handleChange}
-                placeholder="Middle initial only"
-                required
-              />
+              </div></div>
               <br />
+             
               <h4 className="">
                 <strong>Street Address</strong>
               </h4>
-
-             
               <input
                 type="text"
                 className="form-control text-center"
@@ -125,12 +165,12 @@ class Form extends React.Component {
                 placeholder="12345 your house blvd"
                 required
               />
-              <br />
-              <h4 className="">
-                <strong>City</strong>
-              </h4>
-
-             
+              <br />  
+              <div className="row">
+                <div className="col-xs-4">
+                    <h4 className="">
+                      <strong>City</strong>
+                    </h4>
               <input
                 type="text"
                 className="form-control text-center"
@@ -139,13 +179,12 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 placeholder="City of residence"
                 required
-              />
-              <br />
+              /></div>
+                            <div className="col-xs-4">
+
               <h4 className="">
                 <strong>State</strong>
               </h4>
-
-             
               <input
                 type="text"
                 className="form-control text-center"
@@ -155,29 +194,12 @@ class Form extends React.Component {
                 placeholder="State"
                 required
               />
-
-              <br />
-              <h4 className="">
-                <strong>Country</strong>
-              </h4>
-
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="country"
-                value={this.state.country}
-                onChange={this.handleChange}
-                placeholder="Country"
-                required
-              />
-              <br />
-              <h4 className="">
-                <strong>Zip Code</strong>
-              </h4>
-
-             
-              <input
+              </div>
+              <div className="col-xs-4">
+                <h4 className="">
+                  <strong>Zip Code</strong>
+               </h4>
+               <input
                 type="text"
                 className="form-control text-center"
                 id="zipCode"
@@ -185,9 +207,42 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 placeholder="33445"
                 required
+                />
+             </div>
+             </div>
+             <br />
+             <h4 className="">
+                <strong>Date of birth</strong>
+              </h4>
+
+             
+              <input
+                type="text"
+                className="form-control text-center"
+                id="dob"
+                value={this.state.dob}
+                onChange={this.handleChange}
+                placeholder="01/02/2003"
+                required
+                
               />
               <br />
+              <h4 className="">
+                <strong>Telephone number</strong>
+              </h4>
+
              
+              <input
+                type="text"
+                className="form-control text-center"
+                id="telephoneNumber"
+                value={this.state.telephoneNumber}
+                onChange={this.handleChange}
+                placeholder="480-212-2121"
+                required 
+                
+              />
+              <br />
               <h4 className="">
                 <strong>Email Address</strong>
               </h4>
@@ -247,94 +302,19 @@ class Form extends React.Component {
                 id="password2"
                 value={this.state.password2}
                 onChange={this.handleChange}
-                placeholder="Confirm your password (they must match)"
+                placeholder="They must match"
                 required
                 
               />
               <br />
-              <h4 className="">
-                <strong>Date of birth</strong>
-              </h4>
-
+              
+              
+              
+              
              
-              <input
-                type="text"
-                className="form-control text-center"
-                id="dob"
-                value={this.state.dob}
-                onChange={this.handleChange}
-                placeholder="01/02/2003"
-                required
-                
-              />
-              <br />
-              <h4 className="">
-                <strong>Telephone number</strong>
-              </h4>
-
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="telephoneNumber"
-                value={this.state.telephoneNumber}
-                onChange={this.handleChange}
-                placeholder="480-212-2121"
-                required 
-                
-              />
-              <br />
-              <h4 className="">
-                <strong>Mother's maiden name</strong>
-              </h4>
-
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="mothersMaiden"
-                value={this.state.mothersMaiden}
-                onChange={this.handleChange}
-                placeholder="Mom's last name before marriage"
-                required
-                
-              />
-              <br />
-              <h4 className="">
-                <strong>Occupation</strong>
-              </h4>
-
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="ocupation"
-                value={this.state.ocupation}
-                onChange={this.handleChange}
-                placeholder="Your profession"
-                required
-                
-              />
-              <br />
-              <h4 className="">
-                <strong>Place of employment</strong>
-              </h4>
-
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="companyOfEmployment"
-                value={this.state.companyOfEmployment}
-                onChange={this.handleChange}
-                placeholder="Where do you work?"
-                required
-                
-              />
-              <br />
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn submit-btn"
               >
                 Submit
               </button>
@@ -342,7 +322,7 @@ class Form extends React.Component {
             </div>
           </form>
         </div>
-      </div>
+      </div></div>
     );
   }
 }

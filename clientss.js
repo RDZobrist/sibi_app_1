@@ -72077,6 +72077,8 @@ const updateKeys = (clients) => {
     }
     if (client.NameSet) {
       delete client[key16];
+    }if (client.Number){
+      delete client["Number"]
     }
     
     newClients.push(client);

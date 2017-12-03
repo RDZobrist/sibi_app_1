@@ -1,81 +1,80 @@
-module.exports = function (sequelize, DataTypes) {
-  var NewUser = sequelize.define("sibi_americans", {
-    Number: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      autoIncrement: true,
-      primaryKey: true,
+const bcrypt = require('bcryptjs');
 
-    },
+module.exports = function (sequelize, DataTypes) {
+  let newUser = sequelize.define("sibi_americans", {
+
     Title: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1, 4]
-      }
+
     },
     GivenName: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false,
       validate: {
-        len: [1, 22]
-
+        len: {
+          args: [0, 50],
+          msg: 'The  first name has too many characters'
+        }
       }
+
     },
     MiddleInitial: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1, 3]
-      }
+
     },
     Surname: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
-        len: [1, 22]
+        len: {
+          args: [0, 100],
+          msg: 'This surname has too many characters'
+        }
       }
     },
     StreetAddress: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [10]
-      }
+
     },
     City: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1]
-      }
+
     },
     State: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1, 11]
-      }
+
     },
     ZipCode: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(5),
       allowNull: false,
       validate: {
-        len: [5, 10]
+        len: {
+          args: [0, 5],
+          msg: 'Please only enter first 5 digits of Postal code'
+        }
       }
+
     },
-   
+
     EmailAddress: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        isEmail: {
+          msg: 'This is not an email address'
+        }
+      }
 
     },
     Username: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1, 33]
-      }
+
     },
     Password: {
       type: DataTypes.STRING,
@@ -91,22 +90,18 @@ module.exports = function (sequelize, DataTypes) {
     },
     TelephoneNumber: {
       type: DataTypes.STRING,
+
+    },
+    Birthday: {
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [10, 13]
-      }
+
     },
     MothersMaiden: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    Birthday: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8, 10]
-      }
-    },
+
     Color: {
       type: DataTypes.STRING,
       allowNull: true
@@ -133,6 +128,18 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-  });
-  return NewUser;
+    createdAt: {
+      type: DataTypes.DATE,
+      default: Date.now()
+    },
+
+    updatedAt: {
+      type: DataTypes.DATE,
+      default: Date.now()
+    }
+    
+  },
+  
+);
+  return newUser;
 };

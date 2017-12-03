@@ -1,10 +1,12 @@
 import React from "react";
+import { withRouter } from 'react-router'
 import helpers from '../utils/helpers';
 class Form extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      prefix:"",      
       firstName: "",
       surname: "",
       middleInitial: "",
@@ -12,16 +14,12 @@ class Form extends React.Component {
       streetAddress: "",
       city: "",
       zipCode:"",
-      country: "",
       password: "",
       password2: "",
       username:"",
       dob:"",
       telephoneNumber: "",
-      mothersMaiden: "",
-      companyOfEmployment: "",
-      ocupation: "",
-      emailAddress:""
+      emailAddress:"",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -36,12 +34,39 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    let p = this.state.firstName;
-    console.log(p)
-    // console.dir(this.state)
-    // helpers.postSaved().then(function() {
-    //   console.log(item.web_url);
-    // });
+    // this.props.submitting();
+    
+    
+    //         fetch('/').then( resjson => {
+    //             // take `router` from `this.props` and push new location
+    //             this.props.router.push("/success")
+    //         }).catch(err => {
+    //             // take `router` from `this.props` and push new location
+    //             this.props.router.push("/Error_message_vault")
+    //         })
+        
+  
+    
+  
+    
+    helpers.postSaved(
+      this.state.prefix, 
+      this.state.firstName, 
+      this.state.middleInitial, 
+      this.state.surname, 
+      this.state.streetAddress, 
+      this.state.city, 
+      this.state.stateOfResidence, 
+      this.state.zipCode, 
+      this.state.emailAddress, 
+      this.state.username, 
+      this.state.password,
+      this.state.telephoneNumber,
+      this.state.dob)
+      .then(()=> {
+        console.log("Posted to MongoDB");
+      });
+
     this.setState({ 
       firstName: "",
       surname: "",
@@ -56,12 +81,10 @@ class Form extends React.Component {
       dob:"",
       emailAddress:"",
       telephoneNumber: "",
-      title: "",
-      title1:"",
+      prefix:"",
      });
-    //  console.log(this.state);
-  }
-
+                                                                                                                                                                                                                 
+    }
   render() {
 
     return (
@@ -74,7 +97,8 @@ class Form extends React.Component {
 
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-            <h4 className="">
+       
+                            <h4 className="">
                 <strong>Title</strong>
               </h4>
 
@@ -82,26 +106,13 @@ class Form extends React.Component {
               <input
                 type="text"
                 className="form-control text-center"
-                id="title"
-                value={this.state.title}
+                id="prefix"
+                value={this.state.prefix}
                 onChange={this.handleChange}
-                placeholder="Mr. Mrs. Miss or Dr."
+                placeholder="Mr. Mrs. Ms. or Dr."
                 required
               />
-                            <h4 className="">
-                <strong>Title1</strong>
-              </h4>
-
-             
-              <input
-                type="text"
-                className="form-control text-center"
-                id="title1"
-                value={this.state.title1}
-                onChange={this.handleChange}
-                placeholder="Your last name"
-                required
-              />
+              <br />
             <div className="row">
             <div className="col-xs-4">
               <h4 className="">
@@ -325,6 +336,15 @@ class Form extends React.Component {
       </div></div>
     );
   }
+  
+
 }
 
-export default Form;
+const mapStateToProps = (state) => {return {}}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        submitting: () => dispatch({type:'submitting'}),
+    }
+}
+
+export default  Form; 

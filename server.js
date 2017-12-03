@@ -24,38 +24,47 @@ app.use(express.static("public"));
 
 // -------------------------------------------------
 app.post("/api/saved", function(req, res) {
-  console.log(req.body);
   // create takes an argument of an object describing the item we want to
-  // insert into our table. In this case we just we pass in an object with a text
-  // and complete property (req.body)
-  db.NewUser.create({
-    Title: req.body.title,
-    complete: req.body.complete
-  }).then(function(dbTodo) {
+
+
+
+  db.sibi_americans.create({
+  
+    Title: req.body.Title,
+    GivenName: req.body.GivenName,
+    MiddleInitial: req.body.MiddleInitial,
+    Surname:req.body.Surname,
+    StreetAddress: req.body.StreetAddress,
+    State: req.body.State,
+    ZipCode: req.body.ZipCode,
+    City: req.body.City,
+    EmailAddress: req.body.EmailAddress,
+    Username: req.body.Username,
+    Password: req.body.Password,
+    BrowserUserAgent: req.body.BrowserUserAgent,
+    TelephoneNumber: req.body.TelephoneNumber,
+    Birthday: req.body.Birthday,
+    Color: req.body.Color,
+    Ocupation: req.body.Ocupation,
+    Company: req.body.Company,
+    Vehicle: req.body.Vehicle,
+    Domain: req.body.Domain,   
+    GUID: req.body.GUID
+
+
+  }).then(function(dbNewUser) {
     // We have access to the new todo as an argument inside of the callback function
-    res.json(dbTodo);
+    res.json(dbNewUser)
   });
 });
-// firstName: "",
-// surname: "",
-// middleInitial: "",
-// stateOfResidence:"",
-// streetAddress: "",
-// city: "",
-// zipCode:"",
-// country: "",
-// password: "",
-// password2: "",
-// username:"",
-// dob:"",
-// emailAddress:"",
-// telephoneNumber: "",
-// mothersMaiden: "",
-// companyOfEmployment: "",
-// ocupation:""
+
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
+});
+// success Route. This will redirect the user to our rendered React application
+app.get("/success", function(req, res) {
+  res.sendFile(__dirname + "/public/success.html");
 });
 // -------------------------------------------------
 

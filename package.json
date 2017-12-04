@@ -4,7 +4,7 @@
   "description": "add a user to the db ",
   "main": "server.js",
   "scripts": {
-    "postinstall": "webpack -w",
+    "postinstall": "webpack -p",
     "start": "node server.js"
   },
   "repository": {

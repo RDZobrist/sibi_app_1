@@ -4,7 +4,7 @@ import Axios from 'axios';
 
 var helpers = {
 
-  // This will save new articles to our database
+  // This will save new users to our database
   postSaved: function (prefix, firstName, middleInitial, surname, streetAddress, city, state, zipCode, emailAddress, username, password, telephoneNumber, dob) {
     var newUser = { 
       Title: prefix, 

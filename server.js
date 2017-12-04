@@ -2,10 +2,22 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
-
+const promise = require("bluebird");
 
 // Require History Schema
-const db = require("./server/models");
+// const db = require("./server/models");
+
+const options = {
+  // initialization options
+  promiseLib: promise
+};
+
+
+const pgp = require('pg-promise')(options);
+
+const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/sibi_americans'
+
+const db = pgp(connectionString);
 
 
 // Create Instance of Express

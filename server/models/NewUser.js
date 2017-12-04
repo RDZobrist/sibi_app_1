@@ -20,7 +20,7 @@ module.exports = function (sequelize, DataTypes) {
 
     },
     MiddleInitial: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(3),
       allowNull: false,
 
     },

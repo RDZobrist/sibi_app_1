@@ -15,7 +15,6 @@ class Form extends React.Component {
       city: "",
       zipCode:"",
       password: "",
-      password2: "",
       username:"",
       dob:"",
       telephoneNumber: "",
@@ -301,22 +300,7 @@ class Form extends React.Component {
                 required
                 
               />
-              <br />
-              <h4 className="">
-                <strong>Confirm your password</strong>
-              </h4>
-
              
-              <input
-                type="password"
-                className="form-control text-center"
-                id="password2"
-                value={this.state.password2}
-                onChange={this.handleChange}
-                placeholder="They must match"
-                required
-                
-              />
               <br />
               
               

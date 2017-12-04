@@ -31,7 +31,6 @@ app.post("/api/saved", function(req, res) {
 
 
   db.sibi_americans.create({
-  
     Title: req.body.Title,
     GivenName: req.body.GivenName,
     MiddleInitial: req.body.MiddleInitial,
@@ -52,8 +51,6 @@ app.post("/api/saved", function(req, res) {
     Vehicle: req.body.Vehicle,
     Domain: req.body.Domain,   
     GUID: req.body.GUID
-
-
   }).then(function(dbNewUser) {
     // We have access to the new todo as an argument inside of the callback function
     res.json(dbNewUser)

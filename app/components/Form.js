@@ -15,6 +15,7 @@ class Form extends React.Component {
       city: "",
       zipCode:"",
       password: "",
+      password2: "",
       username:"",
       dob:"",
       telephoneNumber: "",
@@ -33,21 +34,10 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // this.props.submitting();
-    
-    
-    //         fetch('/').then( resjson => {
-    //             // take `router` from `this.props` and push new location
-    //             this.props.router.push("/success")
-    //         }).catch(err => {
-    //             // take `router` from `this.props` and push new location
-    //             this.props.router.push("/Error_message_vault")
-    //         })
-        
+
+      
   
-    
-  
-    
+     
     helpers.postSaved(
       this.state.prefix, 
       this.state.firstName, 
@@ -63,8 +53,9 @@ class Form extends React.Component {
       this.state.telephoneNumber,
       this.state.dob)
       .then(()=> {
-        console.log("Posted to MongoDB");
+        console.log("Posted to DB");
       });
+   
 
     this.setState({ 
       firstName: "",
@@ -82,6 +73,15 @@ class Form extends React.Component {
       telephoneNumber: "",
       prefix:"",
      });
+  
+  
+  
+      
+    
+  
+
+
+
                                                                                                                                                                                                                  
     }
   render() {
@@ -300,7 +300,22 @@ class Form extends React.Component {
                 required
                 
               />
+              <br />
+              <h4 className="">
+                <strong>Confirm your password</strong>
+              </h4>
+
              
+              <input
+                type="password"
+                className="form-control text-center"
+                id="password2"
+                value={this.state.password2}
+                onChange={this.handleChange}
+                placeholder="They must match"
+                required
+                
+              />
               <br />
               
               

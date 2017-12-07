@@ -4,15 +4,8 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const promise = require("bluebird");
 
-const options = {
-  promiseLib: promise
-};
-
-const pgp = require('pg-promise')(options)
-
-const connectionString = process.env.DATABASE_URL || 'postgress://localhost:5432'
-
-const db = pgp(connectionString);
+// Require History Schema
+const db = require("./server/models");
 
 
 
@@ -38,6 +31,7 @@ app.post("/api/saved", function(req, res) {
 
 
   db.sibi_americans.create({
+  
     Title: req.body.Title,
     GivenName: req.body.GivenName,
     MiddleInitial: req.body.MiddleInitial,
@@ -58,6 +52,8 @@ app.post("/api/saved", function(req, res) {
     Vehicle: req.body.Vehicle,
     Domain: req.body.Domain,   
     GUID: req.body.GUID
+
+
   }).then(function(dbNewUser) {
     // We have access to the new todo as an argument inside of the callback function
     res.json(dbNewUser)
@@ -73,11 +69,12 @@ app.get("*", function(req, res) {
 //   res.sendFile(__dirname + "/public/success.html");
 // });
 // -------------------------------------------------
-
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-    app.listen(PORT, function(req, res) {
-        
-      console.log("App listening on PORT " + PORT);
-    });
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function(req, res) {
+      
+    console.log("App listening on PORT " + PORT);
+  });
+});
 

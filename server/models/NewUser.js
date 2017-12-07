@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcryptjs');
 
 module.exports = function (sequelize, DataTypes) {
@@ -143,3 +144,33 @@ module.exports = function (sequelize, DataTypes) {
 );
   return newUser;
 };
+
+
+// CREATE TABLE sibi_americans (
+//   ID SERIAL PRIMARY KEY,
+//   Title VARCHAR,
+//   GivenName VARCHAR,
+//   MiddleInitial VARCHAR,
+//   Surname VARCHAR,
+//   StreetAddress VARCHAR,
+//   City VARCHAR,
+//   State VARCHAR,
+//   ZipCode VARCHAR,
+//   EmailAddress VARCHAR,
+//   Username VARCHAR,
+//   Password VARCHAR,
+//   BrowserUserAgent VARCHAR,
+//   TelephoneNumber VARCHAR,
+//   Birthday VARCHAR,
+//   MothersMaiden VARCHAR,
+//   Color VARCHAR,
+//   Occupation VARCHAR,
+//   Company VARCHAR,
+//   Vehicle VARCHAR,
+//   Domain VARCHAR,
+//   GUID VARCHAR,
+//   createdAt DATE,
+//   updatedAt DATE
+  
+ 
+// );

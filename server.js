@@ -1,10 +1,12 @@
+
 // Include Server Dependencies
 const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const promise = require("bluebird");
 const uuidv1 = require('uuid/v1');
-
+var current_id;
+var last_id;
 // Require History Schema
 const db = require("./server/models");
 
@@ -35,19 +37,20 @@ app.post("/api/saved", function(req, res) {
   // create takes an argument of an object describing the item we want to
 let localIDuuid = uuidv1();
 
+// query db, find the value of last id
+// store last id value to new variable
+// increment last id by one and save to new user entry
 db.sibi_americans.findAll({
   limit: 1,
-  where: {
-    //your where conditions, or without them if you need ANY entry
-  },
+  where: {},
   order: [ [ 'id', 'DESC' ]]
 }).then(function(entries){
-  let iii = entries;
-  console.dir('i am iii : ' + iii)
+  last_id = entries[0].id;
+  current_id = last_id + 1;
 }); 
 
 const sibi_americans = db.sibi_americans.build({
-  id:localIDuuid,
+  id:current_id,
   Title: req.body.Title,
   GivenName: req.body.GivenName,
   MiddleInitial: req.body.MiddleInitial,
@@ -67,7 +70,7 @@ const sibi_americans = db.sibi_americans.build({
   Company: req.body.Company,
   Vehicle: req.body.Vehicle,
   Domain: req.body.Domain,   
-  GUID: req.body.GUID
+  GUID: localIDuuid
 }).save().then(newUser => {
   console.log(newUser)
 }).catch(error => {

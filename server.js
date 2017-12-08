@@ -47,6 +47,7 @@ db.sibi_americans.findAll({
 }); 
 
 const sibi_americans = db.sibi_americans.build({
+  id:localIDuuid,
   Title: req.body.Title,
   GivenName: req.body.GivenName,
   MiddleInitial: req.body.MiddleInitial,

@@ -35,7 +35,7 @@ app.post("/api/saved", function(req, res) {
   // create takes an argument of an object describing the item we want to
 let localIDuuid = uuidv1();
 const sibi_americans = db.sibi_americans.build({
-  GUID: localIDuuid,
+  id: localIDuuid,
   Title: req.body.Title,
   GivenName: req.body.GivenName,
   MiddleInitial: req.body.MiddleInitial,
@@ -55,6 +55,7 @@ const sibi_americans = db.sibi_americans.build({
   Company: req.body.Company,
   Vehicle: req.body.Vehicle,
   Domain: req.body.Domain,   
+  GUID: req.body.GUID
 }).save().then(newUser => {
   console.log(newUser)
 }).catch(error => {

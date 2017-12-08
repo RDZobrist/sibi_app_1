@@ -46,7 +46,7 @@ var helpers = {
       Company:null,
       Vehicle:null,
       Domain:null,
-      GUID: '' };
+      GUID:null, };
 
     return Axios.post("/api/saved", newUser)
       .then(function(response) {

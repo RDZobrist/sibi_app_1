@@ -51,7 +51,6 @@ db.sibi_americans.findAll({
   current_id = last_id  + 1;
   // if last_id and current_id
   // save newUser to db
-  if(last_id > 3000 && current_id >= 3001){
     console.log('yay')
     const sibi_americans = db.sibi_americans.build({
       id:current_id,
@@ -80,7 +79,7 @@ db.sibi_americans.findAll({
     }).catch(error => {
       console.log(error)
     })
-    }
+    
 })
 
 });

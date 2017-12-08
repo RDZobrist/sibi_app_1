@@ -80,9 +80,7 @@ module.exports = function (sequelize, DataTypes) {
     Password: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [6, 22]
-      }
+     
     },
     BrowserUserAgent: {
       type: DataTypes.STRING,

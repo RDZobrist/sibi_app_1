@@ -9,7 +9,7 @@ var helpers = {
         bcrypt.hash(password, salt, function(err, hash) {
             if (err) throw new Error('Error', err)
             else{
-            console.log(hash);
+            return hash
             
             }
         });

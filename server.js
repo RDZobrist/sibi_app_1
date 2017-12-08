@@ -33,36 +33,34 @@ app.get('/users', function(req,res){
 app.post("/api/saved", function(req, res) {
   // create takes an argument of an object describing the item we want to
 
-
-
-  db.sibi_americans.insert({
-    Title: req.body.Title,
-    GivenName: req.body.GivenName,
-    MiddleInitial: req.body.MiddleInitial,
-    Surname:req.body.Surname,
-    StreetAddress: req.body.StreetAddress,
-    State: req.body.State,
-    ZipCode: req.body.ZipCode,
-    City: req.body.City,
-    EmailAddress: req.body.EmailAddress,
-    Username: req.body.Username,
-    Password: req.body.Password,
-    BrowserUserAgent: req.body.BrowserUserAgent,
-    TelephoneNumber: req.body.TelephoneNumber,
-    Birthday: req.body.Birthday,
-    Color: req.body.Color,
-    Ocupation: req.body.Ocupation,
-    Company: req.body.Company,
-    Vehicle: req.body.Vehicle,
-    Domain: req.body.Domain,   
-    GUID: req.body.GUID
-
-
-  }).then(function(dbNewUser) {
-    // We have access to the new todo as an argument inside of the callback function
-    res.json(dbNewUser)
-  });
+const sibi_americans = Sibi_americans.build({
+  Title: req.body.Title,
+  GivenName: req.body.GivenName,
+  MiddleInitial: req.body.MiddleInitial,
+  Surname:req.body.Surname,
+  StreetAddress: req.body.StreetAddress,
+  State: req.body.State,
+  ZipCode: req.body.ZipCode,
+  City: req.body.City,
+  EmailAddress: req.body.EmailAddress,
+  Username: req.body.Username,
+  Password: req.body.Password,
+  BrowserUserAgent: req.body.BrowserUserAgent,
+  TelephoneNumber: req.body.TelephoneNumber,
+  Birthday: req.body.Birthday,
+  Color: req.body.Color,
+  Ocupation: req.body.Ocupation,
+  Company: req.body.Company,
+  Vehicle: req.body.Vehicle,
+  Domain: req.body.Domain,   
+  GUID: req.body.GUID
+}).save().then(newUser => {
+  console.log(newUser)
+}).catch(error => {
+  console.log(error)
+})
 });
+  
 
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("*", function(req, res) {

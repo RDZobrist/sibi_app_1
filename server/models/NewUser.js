@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 
 module.exports = function (sequelize, DataTypes) {
   let newUser = sequelize.define("sibi_americans", {
-    GUID: {
+    id: {
       type: DataTypes.STRING,
       allowNull: true,
       unique: true,
@@ -130,7 +130,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-
+    GUID: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     createdAt: {
       type: DataTypes.DATE,
       default: Date.now()

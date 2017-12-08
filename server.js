@@ -23,7 +23,12 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(express.static("public"));
-
+app.get('/users', function(req,res){
+  db.sibi_americans.findAll({})
+  .then(function(usersDB) {
+    res.json(usersDB);
+})
+})
 // -------------------------------------------------
 app.post("/api/saved", function(req, res) {
   // create takes an argument of an object describing the item we want to

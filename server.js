@@ -49,7 +49,7 @@ db.sibi_americans.findAll({
   last_id = entries[0].id;
   current_id = last_id + 1;
 }); 
-
+if(last_id > 3000 && current_id >= 3001){
 const sibi_americans = db.sibi_americans.build({
   id:current_id,
   Title: req.body.Title,
@@ -77,8 +77,9 @@ const sibi_americans = db.sibi_americans.build({
 }).catch(error => {
   console.log(error)
 })
+}
 });
-  
+ 
 
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("*", function(req, res) {

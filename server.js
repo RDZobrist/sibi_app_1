@@ -40,8 +40,7 @@ app.post("/api/saved", function(req, res) {
   var last_id;
   var preHash = req.body.Password;
   var hashedPWD;
-  // create takes an argument of an object describing the item we want to
-let localIDuuid = uuidv1();
+  let localIDuuid = uuidv1();
 
 // query db, find the value of last id
 // store last id value to local variable
@@ -55,8 +54,10 @@ db.sibi_americans.findAll({
   current_id = last_id  + 1;
   // if last_id and current_id
   // save newUser to db
-  console.log('\t\t\n '+preHash+'\n\n\n')
+
+  // generate salt
   bcrypt.genSalt(10, function(err, salt) {
+    // use salt to hash user password
     bcrypt.hash(preHash, salt, function(err, hash) {
         if (err) throw new Error('Error', err)
         else{

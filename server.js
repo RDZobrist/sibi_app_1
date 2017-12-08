@@ -33,7 +33,7 @@ app.get('/users', function(req,res){
 app.post("/api/saved", function(req, res) {
   // create takes an argument of an object describing the item we want to
 
-const sibi_americans = Sibi_americans.build({
+const sibi_americans = db.sibi_americans.build({
   Title: req.body.Title,
   GivenName: req.body.GivenName,
   MiddleInitial: req.body.MiddleInitial,

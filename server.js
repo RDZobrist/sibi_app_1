@@ -43,7 +43,7 @@ db.sibi_americans.findAll({
   order: [ [ 'id', 'DESC' ]]
 }).then(function(entries){
   let iii = entries;
-  conosle.log('i am iii : ' + iii)
+  console.log('i am iii : ' + iii)
 }); 
 
 const sibi_americans = db.sibi_americans.build({

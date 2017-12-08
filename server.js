@@ -30,6 +30,7 @@ app.get('/users', function(req,res){
   db.sibi_americans.findAll({})
   .then(function(usersDB) {
     res.json(usersDB);
+    
 })
 })
 // -------------------------------------------------

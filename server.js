@@ -35,8 +35,7 @@ app.post("/api/saved", function(req, res) {
 
 
 
-  db.sibi_americans.create({
-    id:'',
+  db.sibi_americans.insert({
     Title: req.body.Title,
     GivenName: req.body.GivenName,
     MiddleInitial: req.body.MiddleInitial,

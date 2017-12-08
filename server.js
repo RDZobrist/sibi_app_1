@@ -34,6 +34,18 @@ app.get('/users', function(req,res){
 app.post("/api/saved", function(req, res) {
   // create takes an argument of an object describing the item we want to
 let localIDuuid = uuidv1();
+
+db.sibi_americans.findAll({
+  limit: 1,
+  where: {
+    //your where conditions, or without them if you need ANY entry
+  },
+  order: [ [ 'id', 'DESC' ]]
+}).then(function(entries){
+  let iii = entries;
+  conosle.log('i am iii : ' + iii)
+}); 
+
 const sibi_americans = db.sibi_americans.build({
   id: localIDuuid,
   Title: req.body.Title,

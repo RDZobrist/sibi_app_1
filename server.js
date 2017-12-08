@@ -23,6 +23,8 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.use(express.static("public"));
+
+
 app.get('/users', function(req,res){
   db.sibi_americans.findAll({})
   .then(function(usersDB) {
@@ -36,7 +38,7 @@ app.post("/api/saved", function(req, res) {
 
 
   db.sibi_americans.create({
-  
+    id: '';
     Title: req.body.Title,
     GivenName: req.body.GivenName,
     MiddleInitial: req.body.MiddleInitial,

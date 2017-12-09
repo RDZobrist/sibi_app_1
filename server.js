@@ -52,8 +52,7 @@ db.sibi_americans.findAll({
 }).then(function(entries){
   last_id = entries[0].id;
   current_id = last_id  + 1;
-  // if last_id and current_id
-  // save newUser to db
+
 
   // generate salt
   bcrypt.genSalt(10, function(err, salt) {
@@ -85,7 +84,8 @@ db.sibi_americans.findAll({
           Domain: req.body.Domain,   
           GUID: localIDuuid
         }).save().then(newUser => {
-          console.log(newUser)
+          console.log(newUser);
+          res.sendStatus(200);          
         }).catch(error => {
           console.log(error)
         })
@@ -101,6 +101,7 @@ db.sibi_americans.findAll({
 
 // Main "/" Route. This will redirect the user to our rendered React application
 app.get("*", function(req, res) {
+  res.sendStatus(200);
   res.sendFile(__dirname + "/public/index.html");
 });
 // success Route. This will redirect the user to our rendered React application
